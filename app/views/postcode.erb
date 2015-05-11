@@ -4,6 +4,8 @@
 
   <table id='cinemas'>
   </table>
+  <table id='movies'>
+  </table>
   <script>
   $(document).ready(function(){
     $('#submit-post').on('click', function() {
@@ -17,11 +19,23 @@
   };
 
   function callCinemaAPI(postcode) {
+    $('#cinemas').html('');
     postcode = postcode.replace(/\s+/g, '');
     $.post('postcode/' + postcode, function(data) {
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
-        $('#cinemas').append("<tr> <td>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
+        $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
+      }
+    });
+  };
+
+
+  goToCinema = function(id){
+    $.post('movies/' + id, function(data){
+      $('#movies').html('');
+      var data = JSON.parse(data);
+      for(var i = 0; i < data.length; i++) {
+        $('#movies').append("<tr> <td>" + data[i].title + "</td></tr>");
       }
     });
   };

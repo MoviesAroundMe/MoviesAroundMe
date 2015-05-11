@@ -27,9 +27,8 @@ class MoviesAroundMe < Sinatra::Base
     "<form method='post' action='/movies'> <input type='text' name='cinema_id'></form>"
   end
 
-  post '/movies' do
-    movie_list = open("http://moviesapi.herokuapp.com/cinemas/#{params[:cinema_id]}/showings")
-    p movie_list
+  post '/movies/:cinema_id' do
+    open("http://moviesapi.herokuapp.com/cinemas/#{params[:cinema_id]}/showings")
   end
   # start the server if ruby file executed directly
   run! if app_file == $0
