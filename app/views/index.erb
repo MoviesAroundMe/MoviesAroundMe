@@ -1,0 +1,20 @@
+<body>
+
+  <!-- Until we figure out how to serve up js files with sinatra: -->
+  <script>
+    $(document).ready(function(){
+      updateResult();
+      $('#select-movies').change(updateResult());
+    });
+
+    function updateResult(){
+      rating = 'IMDb: 6.8'
+      $('#imdb-result').html(rating);
+    };
+  </script>
+  <select id="select-movies">
+    <option value="home">Home</option>
+  </select>
+  <div id='imdb-result'>a</div>
+
+</body>

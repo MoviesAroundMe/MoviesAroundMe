@@ -1,8 +1,6 @@
 require 'sinatra/base'
 
 class MoviesAroundMe < Sinatra::Base
-  set :public_folder, './app/public'
-
   get '/' do
     erb :index
   end
