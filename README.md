@@ -4,7 +4,6 @@
 
 
 # Problems/Ideas:
-* Do we use the Cineworld API or scrape Google results?
 * Additional options that we have not used: rotten tomatoes user rating and fresh/rotten data
 
 # Potential additional features:
