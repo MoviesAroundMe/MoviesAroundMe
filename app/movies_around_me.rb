@@ -17,7 +17,11 @@ class MoviesAroundMe < Sinatra::Base
   end
 
   get '/postcode' do
-    erb :postcode
+     "<form method='post' action='/postcode'> <input type='text' name='post_code'></form>"
+  end
+
+  post '/postcode' do
+    open("http://moviesapi.herokuapp.com/cinemas/find/#{params[:post_code]}")
   end
 
   get '/movies' do
