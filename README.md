@@ -7,8 +7,6 @@
 * `brew install phantomjs` (Gemfile?)
 * `gem install rackup` (Does not work in the gemfile?)
 
-
-
 # Problems/Ideas:
 * Additional options that we have not used: rotten tomatoes user rating and fresh/rotten data
 
