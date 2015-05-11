@@ -18,10 +18,15 @@
 
   function callCinemaAPI(postcode) {
     postcode = postcode.replace(/\s+/g, '');
-    $.get('http://moviesapi.herokuapp.com/cinemas/find/EC1V8AZ', function(data) {
+    $.post('postcode/EC1V8AZ', function(data) {
+      var data = JSON.parse(data);
       console.log(data);
+      for(var i = 0; i < data.length; i++) {
+        $('#cinemas').append("<tr> <td>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
+      }
     });
   };
+
 
   </script>
 </body>
