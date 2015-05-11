@@ -1,2 +1,3 @@
 # MoviesAroundMe
-* MVP: Type in a movie, get a collection of reviews and ratings
+* MVP: Choose from 3 movies, get reviews and ratings
+* Testing with: Rspec/Capybara
