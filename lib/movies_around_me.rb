@@ -1,10 +1,12 @@
-require 'sinatra/base'
+# require 'sinatra/base'
 
-class MoviesAroundMe < Sinatra::Base
-  get '/' do
-    'Hello MoviesAroundMe!'
-  end
+# class MoviesAroundMe < Sinatra::Base
+#   set :public_folder, './app/public'
 
-  # start the server if ruby file executed directly
-  run! if app_file == $0
-end
+#   get '/' do
+#     erb :index
+#   end
+
+#   # start the server if ruby file executed directly
+#   run! if app_file == $0
+# end
