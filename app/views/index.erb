@@ -11,20 +11,24 @@
 
     function getAPI(){
       var selectedMovie = $('#select-movies').val();
-      $.get('http://www.omdbapi.com/?t=' + selectedMovie +'&y=&plot=short&r=json', function(data) {
+      $.get('http://www.omdbapi.com/?t=' + selectedMovie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
         updateRating(data);
       });
     };
 
     function updateRating(data){
-      var rating = "IMDb: " + data.imdbRating;
-      $('#imdb-result').html(rating);
+      var imdbRating = "IMDb: " + data.imdbRating;
+      var tomatoRating = "Rotten Tomatoes: " + data.tomatoRating;
+      $('#imdb-result').html(imdbRating);
+      $('#rotten-tomatoes-result').html(tomatoRating);
     }
+
   </script>
   <select id="select-movies">
     <option value="Home">Home</option>
     <option value="Big Game">Big Game</option>
   </select>
   <div id='imdb-result'>a</div>
+  <div id='rotten-tomatoes-result'></div>
 
 </body>
