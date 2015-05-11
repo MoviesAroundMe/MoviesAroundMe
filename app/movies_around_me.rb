@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require "sinatra/cross_origin"
-require 'tilt/erubis'
 require 'open-uri'
 
 class MoviesAroundMe < Sinatra::Base
