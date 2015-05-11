@@ -1,4 +1,4 @@
 require 'capybara/rspec'
-require './lib/movies_around_me'
+require './app/movies_around_me'
 
 Capybara.app = MoviesAroundMe
