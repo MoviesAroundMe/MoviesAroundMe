@@ -13,12 +13,20 @@ feature 'MVP' do
     expect(result).to eq 'Home'
   end
 
-  scenario 'upon selecting a movie, imdb review is displayed', js: true do
+  scenario 'upon selecting a movie, imdb rating is displayed', js: true do
     visit '/'
     find('select').select('Home')
     expect(page).to have_content('IMDb: 8.6')
     find('select').select('Big Game')
     expect(page).to have_content('IMDb: 6.7')
+  end
+
+  scenario 'upon selecting a movie, rotten tomatoes rating is displayed', js: true do
+    visit '/'
+    find('select').select('Home')
+    expect(page).to have_content('Rotten Tomatoes: 5.1')
+    find('select').select('Big Game')
+    expect(page).to have_content('Rotten Tomatoes: 6.7')
   end
 
 end
