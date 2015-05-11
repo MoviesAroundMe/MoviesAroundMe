@@ -9,8 +9,8 @@ feature 'MVP' do
 
   scenario 'can select a movie from the drop down list' do
     visit '/'
-    result = find('select').find(:option, 'Home').text
-    expect(result).to eq'Home'
+    result = find('select').find(:option, 'Home').value
+    expect(result).to eq 'home'
   end
 
 end
