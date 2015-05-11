@@ -15,7 +15,7 @@ feature 'MVP' do
 
   scenario 'upon selecting a movie, imdb review is displayed' do
     visit '/'
-    select('Home', :from => 'select')
+    find('select').select('Home')
     expect(page).to have_content('IMDb: 6.8')
   end
 
