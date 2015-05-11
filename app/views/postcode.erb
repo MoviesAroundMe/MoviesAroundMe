@@ -1,4 +1,27 @@
-<form>
-  <input type="text" placeholder="Enter Postcode">
-  <input type="submit" name="Search For Cinemas">
-</form>
+<body>
+  <input type="text" placeholder="Enter Postcode" name='Postcode' id='input-post'>
+  <input type="submit" name="Search For Cinemas" id='submit-post'>
+
+  <table id='cinemas'>
+  </table>
+  <script>
+  $(document).ready(function(){
+    $('#submit-post').on('click', function() {
+      submitPost();
+    });
+  });
+
+  function submitPost(){
+    callCinemaAPI($('#input-post').val());
+    $('#input-post').val('');
+  };
+
+  function callCinemaAPI(postcode) {
+    postcode = postcode.replace(/\s+/g, '');
+    $.get('http://moviesapi.herokuapp.com/cinemas/find/EC1V8AZ', function(data) {
+      console.log(data);
+    });
+  };
+
+  </script>
+</body>
