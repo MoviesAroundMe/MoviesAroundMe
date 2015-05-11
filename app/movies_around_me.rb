@@ -1,6 +1,10 @@
 require 'sinatra/base'
+require "sinatra/cross_origin"
 
 class MoviesAroundMe < Sinatra::Base
+  register Sinatra::CrossOrigin
+  enable :cross_origin
+
   get '/' do
     erb :index
   end
