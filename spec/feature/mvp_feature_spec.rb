@@ -13,4 +13,10 @@ feature 'MVP' do
     expect(result).to eq 'home'
   end
 
+  scenario 'upon selecting a movie, imdb review is displayed' do
+    visit '/'
+    select('Home', :from => 'select')
+    expect(page).to have_content('IMDb: 6.8')
+  end
+
 end
