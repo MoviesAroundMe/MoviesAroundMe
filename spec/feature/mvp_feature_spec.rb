@@ -13,7 +13,7 @@ feature 'MVP' do
     expect(result).to eq 'home'
   end
 
-  scenario 'upon selecting a movie, imdb review is displayed' do
+  scenario 'upon selecting a movie, imdb review is displayed', js: true do
     visit '/'
     find('select').select('Home')
     expect(page).to have_content('IMDb: 6.8')

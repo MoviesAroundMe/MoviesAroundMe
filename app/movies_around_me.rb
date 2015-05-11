@@ -2,7 +2,7 @@ require 'sinatra/base'
 
 class MoviesAroundMe < Sinatra::Base
   get '/' do
-    '<select><option value="home">Home</option></select>'
+    erb :index
   end
 
   # start the server if ruby file executed directly

@@ -1,13 +1,6 @@
 <body>
 
   <!-- Until we figure out how to serve up js files with sinatra: -->
-
-  <select id="select-movies">
-    <option value="home">Home</option>
-  </select>
-  <p>Hello</p>
-  <div id='imdb-result'>a</div>
-
   <script>
     $(document).ready(function(){
       updateResult();
@@ -16,7 +9,12 @@
 
     function updateResult(){
       rating = 'IMDb: 6.8'
-      $('#imdb-result').html = rating;
+      $('#imdb-result').html(rating);
     };
   </script>
+  <select id="select-movies">
+    <option value="home">Home</option>
+  </select>
+  <div id='imdb-result'>a</div>
+
 </body>
