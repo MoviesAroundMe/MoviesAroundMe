@@ -38,15 +38,20 @@
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
         $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
-        $('.cinemas-dropdown').append("<option onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].distance + "      " + data[i].title + "</option>");
+        $('.cinemas-dropdown').append("<option id=" + data[i].venue_id +">" + data[i].distance + "      " + data[i].title + "</option>");
         $('.loader').fadeOut();
         $('.cinemas-dropdown').fadeIn();
       }
     });
   };
 
+  updatedSelect = function() {
+    goToCinema($('.cinemas-dropdown').children(":selected").attr("id"));
+  }
+
 
   goToCinema = function(id){
+    console.log(id)
     $.post('movies/' + id, function(data){
       $('#movies').html('');
       var data = JSON.parse(data);
