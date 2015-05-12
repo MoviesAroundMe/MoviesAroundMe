@@ -37,15 +37,18 @@
       for(var i = 0; i < data.length; i++) {
         var title = data[i].title.replace(/ /g,'-')
         title.toString()
-        $('#movies').append("<tr id="+title+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
+        $('#movies').append("<tr id="+title.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
       }
     });
   };
 
   function getAPI(selectedMovie){
-      selectedMovie.replace(/-/g,' ')
-      $.get("http://www.omdbapi.com/?t=" + selectedMovie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
-      $('#'+selectedMovie.replace(/ /g,'-')).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
+      var movie = selectedMovie.replace(/-/g,'+').substring(0, selectedMovie.length - 7);
+      $.get("http://www.omdbapi.com/?t=" + movie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
+      idWeWant = (selectedMovie.substring(0, selectedMovie.length - 7)).toString()
+      formattedId = "#"+idWeWant
+      console.log($(formattedId))
+      $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
     })
   };
 
