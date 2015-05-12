@@ -39,6 +39,7 @@ body {
 
 table, th, td {
   width: 100px;
+  text-align: center;
 }
 
 img {
