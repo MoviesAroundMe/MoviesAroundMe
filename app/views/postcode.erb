@@ -1,11 +1,14 @@
 <body>
-  <input type="text" placeholder="Enter Postcode" name='Postcode' id='input-post'>
-  <input type="submit" name="Search For Cinemas" id='submit-post'>
-
-  <table id='cinemas'>
-  </table>
-  <table id='movies'>
-  </table>
+  <div class="header">
+    <input type="text" placeholder="Enter Postcode" name='Postcode' id='input-post'>
+    <input type="submit" name="Search For Cinemas" id='submit-post'>
+    <table id='cinemas'>
+    </table>
+  </div>
+  <div class="movie-container">
+    <table id='movies'>
+    </table>
+  </div>
   <script>
   $(document).ready(function(){
     $('#submit-post').on('click', function() {
