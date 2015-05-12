@@ -35,11 +35,23 @@
       $('#movies').html('');
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
-        $('#movies').append("<tr> <td>" + data[i].title + "</td></tr>");
+        var title = data[i].title.replace(/ /g,'-')
+        var strippedTitle = title.replace(/:/g, '_')
+        title.toString()
+        $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
       }
     });
   };
 
+  function getAPI(selectedMovie){
+      var movie = selectedMovie.replace(/-/g,'+').substring(0, selectedMovie.length - 7);
+      $.get("http://www.omdbapi.com/?t=" + movie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
+      idWeWant = (selectedMovie.substring(0, selectedMovie.length - 7)).toString()
+      formattedId = "#"+idWeWant
+      console.log($(formattedId))
+      $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
+    })
+  };
 
   </script>
 </body>
