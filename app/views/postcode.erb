@@ -50,6 +50,7 @@
 
 
   goToCinema = function(id){
+    $('.movie-container').html('')
     console.log(id);
     $.post('movies/' + id, function(data){
       $('#movies').html('');
