@@ -14,7 +14,7 @@ class MoviesAroundMe < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    erb :postcode
   end
 
   get '/postcode' do
