@@ -37,6 +37,7 @@
       for(var i = 0; i < data.length; i++) {
         var title = data[i].title.replace(/ /g,'-')
         var strippedTitle = title.replace(/:/g, '_')
+        strippedTitle = strippedTitle.replace(/&/g, '_')
         title.toString()
         $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
       }
@@ -47,6 +48,8 @@
       var movie = selectedMovie.replace(/-/g,'+').substring(0, selectedMovie.length - 7);
       $.get("http://www.omdbapi.com/?t=" + movie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
       idWeWant = (selectedMovie.substring(0, selectedMovie.length - 7)).toString()
+      idWeWant = idWeWant.replace(/:/g, '_')
+      idWeWant = idWeWant.replace(/&/g, '_')
       formattedId = "#"+idWeWant
       console.log($(formattedId))
       $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
