@@ -13,7 +13,7 @@ body {
 }
 
 #map-container {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   border-top-right-radius: 15px;
   overflow: hidden;
@@ -22,12 +22,21 @@ body {
 .movie-frame{
   background-color: #AAC9D7;
   float:left;
-  margin: 5px;
+  margin: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
   border-radius: 10px;
-  width:50px;
-  height:50px;
+  width:200px;
+  height:200px;
   opacity: 0.7;
   border: 2px solid #2c3e50;
+  padding: 5px;
+  font-size: 10px;
+  overflow: hidden;
+}
+
+img {
+  float: left;
 }
 
 #input-post {

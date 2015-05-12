@@ -2,8 +2,6 @@
   <div class="header">
     <input type="text" placeholder="Enter Postcode" name='Postcode' id='input-post'>
     <input type="submit" name="Search For Cinemas" id='submit-post'>
-    <!-- <table id='cinemas' style="display:none">
-    </table> -->
     <div class="loader">Loading...</div>
     <select class="cinemas-dropdown" style="display:none" onchange="updatedSelect()"></select>
   </div>
@@ -39,7 +37,6 @@
     $.post('postcode/' + postcode, function(data) {
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
-        // $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
         $('.cinemas-dropdown').append("<option id=" + data[i].venue_id +">" + data[i].distance + "      " + data[i].title + "</option>");
         $('.loader').fadeOut();
         $('.cinemas-dropdown').fadeIn();
@@ -62,8 +59,7 @@
         var strippedTitle = title.replace(/:/g, '_')
         strippedTitle = strippedTitle.replace(/&/g, '_')
         title.toString()
-        $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td>" + data[i].title + "</td></tr>")
-        $('.movie-container').append('<div class="movie-frame"></div>')
+        $('.movie-container').append('<div class="movie-frame" id=' + strippedTitle.substring(0, title.length - 7) + '>' + data[i].title + '</div>')
         getAPI(title);
       }
     });
@@ -72,18 +68,17 @@
   function getAPI(selectedMovie){
       var movie = selectedMovie.replace(/-/g,'+').substring(0, selectedMovie.length - 7);
       $.get("http://www.omdbapi.com/?t=" + movie +'&y=&plot=short&r=json&tomatoes=true', function(data) {
-      idWeWant = (selectedMovie.substring(0, selectedMovie.length - 7)).toString()
-      idWeWant = idWeWant.replace(/:/g, '_')
-      idWeWant = idWeWant.replace(/&/g, '_')
-      formattedId = "#"+idWeWant
-      console.log($(formattedId))
-      $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
-    })
+        idWeWant = (selectedMovie.substring(0, selectedMovie.length - 7)).toString()
+        idWeWant = idWeWant.replace(/:/g, '_')
+        idWeWant = idWeWant.replace(/&/g, '_')
+        formattedId = "#"+idWeWant
+        $(formattedId).append("<img src='" + data.Poster + "' width='100px'>");
+        $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
+      })
   };
 
   showMap = function(){
    var postcode = $('#input-post').val()
-   console.log(postcode)
    url = postcode.replace(/ /g, '')
    var display = "<iframe width='500' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBCj5rD1yeJmhglY3eapLgqW1GC8WZDoP0&q="+url+"'></iframe>"
    $("#map").html(display)
