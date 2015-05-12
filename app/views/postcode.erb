@@ -16,6 +16,11 @@
     $('#submit-post').on('click', function() {
       submitPost();
     });
+    $("#input-post").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#submit-post").click();
+    }
+});
   });
 
   function submitPost(){
