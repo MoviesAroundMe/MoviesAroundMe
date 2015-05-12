@@ -11,6 +11,8 @@
   </div>
   <div id='map-container'><div id='map'></div></div>
   <script>
+  var pollution;
+
   $(document).ready(function(){
     $('#submit-post').on('click', function() {
       submitPost();
@@ -23,7 +25,7 @@
   });
 
   function submitPost(){
-    showMap();
+    pollution = $('#input-post').val();
     callCinemaAPI($('#input-post').val());
     $('#input-post').val('');
   };
@@ -46,6 +48,9 @@
 
   updatedSelect = function() {
     goToCinema($('.cinemas-dropdown').children(":selected").attr("id"));
+    var cinema = $('.cinemas-dropdown').children(":selected")
+    var address = cinema[0].innerText.substring(10).trim();
+    showMap(address);
   }
 
 
@@ -60,7 +65,7 @@
         var strippedTitle = title.replace(/:/g, '_')
         strippedTitle = strippedTitle.replace(/&/g, '_')
         title.toString()
-        $('.movie-container').append('<div class="movie-frame" id=' + strippedTitle.substring(0, title.length - 7) + '>' + data[i].title + '</div>')
+        $('.movie-container').append('<div class="movie-frame"><table id=' + strippedTitle.substring(0, title.length - 7) + '></table></div>')
         getAPI(title);
       }
     });
@@ -73,17 +78,21 @@
         idWeWant = idWeWant.replace(/:/g, '_')
         idWeWant = idWeWant.replace(/&/g, '_')
         formattedId = "#"+idWeWant
-        $(formattedId).append("<img src='" + data.Poster + "' width='100px'>");
-        $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
+        console.log(data);
+        $(formattedId).append("<tr><td><img src='" + data.Poster + "' width='100px'></td></tr>");
+        $(formattedId).append("<tr><td class='movie-title'>" + data.Title + "</td></tr>")
+        $(formattedId).append("<tr><td>IMDb " + data.imdbRating + "<br>Rotten Tomatoes " + data.tomatoRating + "</td></tr>")
       })
   };
 
-  showMap = function(){
-   var postcode = $('#input-post').val()
-   url = postcode.replace(/ /g, '')
-   var display = "<iframe width='500' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBCj5rD1yeJmhglY3eapLgqW1GC8WZDoP0&q="+url+"'></iframe>"
-   $("#map").html(display)
- };
+  showMap = function(address){
+     var origin =pollution.replace(/ /g, '')
+     console.log(pollution)
+     var destination = address.replace(/ /g, '+')
+     var url = '&origin='+ origin + '&destination=' + destination
+     var display = "<iframe width='500' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/directions?key=AIzaSyBCj5rD1yeJmhglY3eapLgqW1GC8WZDoP0"+url+"'></iframe>"
+     $("#map").html(display)
+   };
 
   </script>
 </body>
