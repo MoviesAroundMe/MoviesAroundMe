@@ -4,7 +4,8 @@
     <input type="submit" name="Search For Cinemas" id='submit-post'>
     <table id='cinemas' style="display:none">
     </table>
-    <select class="cinemas-dropdown" style="display:none"></select>
+    <div class="loader">Loading...</div>
+    <select class="cinemas-dropdown" style="display:none" onchange="updatedSelect()"></select>
   </div>
   <div class="movie-container">
     <table id='movies'>
@@ -25,6 +26,7 @@
   function callCinemaAPI(postcode) {
     $('#cinemas').html('');
     $('.cinemas-dropdown').fadeOut();
+    $('.loader').fadeIn();
     $('.cinemas-dropdown').html('');
     postcode = postcode.replace(/\s+/g, '');
     $.post('postcode/' + postcode, function(data) {
@@ -32,6 +34,7 @@
       for(var i = 0; i < data.length; i++) {
         $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
         $('.cinemas-dropdown').append("<option onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].distance + "      " + data[i].title + "</option>");
+        $('.loader').fadeOut();
         $('.cinemas-dropdown').fadeIn();
       }
     });
