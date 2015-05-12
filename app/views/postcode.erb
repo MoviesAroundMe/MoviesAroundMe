@@ -36,8 +36,9 @@
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
         var title = data[i].title.replace(/ /g,'-')
+        var strippedTitle = title.replace(/:/g, '_')
         title.toString()
-        $('#movies').append("<tr id="+title.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
+        $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
       }
     });
   };
