@@ -14,3 +14,7 @@ body {
 #cinemas {
   color: white;
 }
+
+.cinemas-dropdown {
+  margin-left: 50px;
+}
