@@ -11,6 +11,7 @@
     <table id='movies'>
     </table>
   </div>
+  <div id='map-container'><div id='map'></div></div>
   <script>
   $(document).ready(function(){
     $('#submit-post').on('click', function() {
@@ -24,6 +25,7 @@
   });
 
   function submitPost(){
+    showMap();
     callCinemaAPI($('#input-post').val());
     $('#input-post').val('');
   };
@@ -51,7 +53,7 @@
 
 
   goToCinema = function(id){
-    console.log(id)
+    console.log(id);
     $.post('movies/' + id, function(data){
       $('#movies').html('');
       var data = JSON.parse(data);
@@ -76,6 +78,14 @@
       $(formattedId).append("IMDb " + data.imdbRating + "Rotten Tomatoes " + data.tomatoRating)
     })
   };
+
+  showMap = function(){
+   var postcode = $('#input-post').val()
+   console.log(postcode)
+   url = postcode.replace(/ /g, '')
+   var display = "<iframe width='500' height='250' frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyBCj5rD1yeJmhglY3eapLgqW1GC8WZDoP0&q="+url+"'></iframe>"
+   $("#map").html(display)
+ };
 
   </script>
 </body>

@@ -12,6 +12,18 @@ body {
   background-color: #607d8b;
 }
 
+#map-container {
+  position: absolute;
+  bottom: 0;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+
+/*#map {
+  width: 300px;
+  height: 300px;
+}*/
+
 #input-post {
   float: left;
   outline: none;
