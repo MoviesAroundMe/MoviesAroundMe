@@ -2,8 +2,8 @@
   <div class="header">
     <input type="text" placeholder="Enter Postcode" name='Postcode' id='input-post'>
     <input type="submit" name="Search For Cinemas" id='submit-post'>
-    <table id='cinemas' style="display:none">
-    </table>
+    <!-- <table id='cinemas' style="display:none">
+    </table> -->
     <div class="loader">Loading...</div>
     <select class="cinemas-dropdown" style="display:none" onchange="updatedSelect()"></select>
   </div>
@@ -39,7 +39,7 @@
     $.post('postcode/' + postcode, function(data) {
       var data = JSON.parse(data);
       for(var i = 0; i < data.length; i++) {
-        $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
+        // $('#cinemas').append("<tr> <td onclick=goToCinema(" + data[i].venue_id + ")>" + data[i].title + "</td> <td> " + data[i].distance + "</td> </tr>");
         $('.cinemas-dropdown').append("<option id=" + data[i].venue_id +">" + data[i].distance + "      " + data[i].title + "</option>");
         $('.loader').fadeOut();
         $('.cinemas-dropdown').fadeIn();
@@ -62,7 +62,9 @@
         var strippedTitle = title.replace(/:/g, '_')
         strippedTitle = strippedTitle.replace(/&/g, '_')
         title.toString()
-        $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td onclick=getAPI('" + title + "')>" + data[i].title + "</td></tr>")
+        $('#movies').append("<tr id="+strippedTitle.substring(0, title.length - 7)+"> <td>" + data[i].title + "</td></tr>")
+        $('.movie-container').append('<div class="movie-frame"></div>')
+        getAPI(title);
       }
     });
   };

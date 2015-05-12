@@ -19,10 +19,16 @@ body {
   overflow: hidden;
 }
 
-/*#map {
-  width: 300px;
-  height: 300px;
-}*/
+.movie-frame{
+  background-color: #AAC9D7;
+  float:left;
+  margin: 5px;
+  border-radius: 10px;
+  width:50px;
+  height:50px;
+  opacity: 0.7;
+  border: 2px solid #2c3e50;
+}
 
 #input-post {
   float: left;
